@@ -2,7 +2,7 @@
 
 using namespace std;
 
-vector<int> aw; // массы аминокислот
+vector<int> aw; // РјР°СЃСЃС‹ Р°РјРёРЅРѕРєРёСЃР»РѕС‚
 
 vector<vector<int>> linear(vector<int> spec, int S) {
     int maxA = aw.size();
@@ -54,7 +54,7 @@ void solve_noprefix(vector<int> spec, int S) {
         }
     }
 
-    // тут должно быть 2D-FFT
+    // С‚СѓС‚ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ 2D-FFT
     for (int w = 0; w < W; w++) {
         for (int s = 0; s < S; s++) {
             for (int w1 = 1; w1 <= w - 1; w1++) {
@@ -65,7 +65,7 @@ void solve_noprefix(vector<int> spec, int S) {
         }
     }
 
-    // убираем дважды посчитанные пептиды
+    // СѓР±РёСЂР°РµРј РґРІР°Р¶РґС‹ РїРѕСЃС‡РёС‚Р°РЅРЅС‹Рµ РїРµРїС‚РёРґС‹
     auto dp_s = solve_symm(spec, S);
 
     for (int w = 1; w < W; w++) {
@@ -87,7 +87,7 @@ vector<int> shift_spec(int d, vector<int> spec) {
     return res;
 }
 
-// O(W^2 * S * log(WS)), если с FFT
+// O(W^2 * S * log(WS)), ГҐГ±Г«ГЁ Г± FFT
 void solve(vector<int> spec, int S) {
     int W = spec.size();
     auto dp_lin = linear(spec, S);
@@ -96,7 +96,7 @@ void solve(vector<int> spec, int S) {
         auto spec1 = shift_spec(w, spec);
         solve_noprefix(spec1, S);
 
-        // тут должно быть FFT
+        // С‚СѓС‚ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ FFT
         for (int w1 = 0; w1 < W - w; w1++) {
             for (int s = 0; s < S; s++) {
                 for (int s1 = 0; s1 < S - s; s1++) {
