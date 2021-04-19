@@ -2,7 +2,7 @@
 
 using namespace std;
 
-vector<int> aw; // массы аминокислот
+vector<int> aw; // РјР°СЃСЃС‹ Р°РјРёРЅРѕРєРёСЃР»РѕС‚
 
 const int maxW = 100;
 const int maxS = 100;
@@ -13,7 +13,7 @@ int ans[maxW][maxS];
 int dp_sym[maxW][maxS];
 int total_sym[maxW][maxS];
 
-// initv -- начальные значения. По умолчанию dp(0, 0) = 1, остальные нули
+// initv -- РЅР°С‡Р°Р»СЊРЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ. РџРѕ СѓРјРѕР»С‡Р°РЅРёСЋ dp(0, 0) = 1, РѕСЃС‚Р°Р»СЊРЅС‹Рµ РЅСѓР»Рё
 vector<vector<int>> linear(vector<int> spec, int S, const vector<int>& initv = {}) {
     int maxA = aw.size();
     int W = spec.size();
@@ -47,7 +47,7 @@ vector<int> shift_spec(int d, vector<int> spec) {
     return res;
 }
 
-// dp0(w1, w2, s) -- число пептидов массы w2, у которых есть префикс массы ровно w1, со счётом s
+// dp0(w1, w2, s) -- С‡РёСЃР»Рѕ РїРµРїС‚РёРґРѕРІ РјР°СЃСЃС‹ w2, Сѓ РєРѕС‚РѕСЂС‹С… РµСЃС‚СЊ РїСЂРµС„РёРєСЃ РјР°СЃСЃС‹ СЂРѕРІРЅРѕ w1, СЃРѕ СЃС‡С‘С‚РѕРј s
 void build_dp0(vector<int> spec, int S) {
     int W = spec.size();
 
@@ -68,7 +68,7 @@ void build_dp0(vector<int> spec, int S) {
     }
 }
 
-// dp -- см. статью
+// dp -- СЃРј. СЃС‚Р°С‚СЊСЋ
 // O(W^2 * S * maxA)
 void solve(vector<int> spec, int S) {
     int maxA = aw.size();
@@ -96,7 +96,7 @@ void solve(vector<int> spec, int S) {
         }
     }
 
-    // теперь нужно убрать повторы
+    // С‚РµРїРµСЂСЊ РЅСѓР¶РЅРѕ СѓР±СЂР°С‚СЊ РїРѕРІС‚РѕСЂС‹
     auto dp_lin = linear(spec, S);
     for (int wp = 0; wp < W; wp++) {
         for (int w = 0; wp + 2 * w < W; w++)
